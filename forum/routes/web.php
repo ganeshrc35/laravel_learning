@@ -20,5 +20,6 @@ Route::get('/', function () {
 Route::get('/aa/hello',[CalcController::class,'hello']);
 Route::get('/aa/abc',[CalcController::class,'hello']);
 Route::prefix('calculation')->group(function () {
-    Route::get('/add',[CalcController::class,'hello']);
+    Route::get('/',[CalcController::class,'calculator']);
+    Route::post('/calculate',[CalcController::class,'calculate']);
 });

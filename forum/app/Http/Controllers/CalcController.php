@@ -17,7 +17,12 @@ class CalcController extends Controller
         echo 'Back to contrroller <br/>';
         return view('calculation')->with(['abc' => $result]);
     }
-    public function gg(){
-        echo $this->a;
+    public function calculator(){
+        return view('calculator.index');
+    }
+    public function calculate(Request $request){
+        // echo "Sindhu now I am in controller";
+        $result = $this->calcModel->calculate($request->all());
+        return view('calculator.index')->with(['result' => $result]);
     }
 }
