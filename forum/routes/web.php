@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalcController;
+use App\Http\Controllers\calculationController;
+use App\Http\Controllers\DivisibleController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +25,18 @@ Route::get('/aa/abc',[CalcController::class,'hello']);
 Route::prefix('calculation')->group(function () {
     Route::get('/',[CalcController::class,'calculator']);
     Route::post('/calculate',[CalcController::class,'calculate']);
+});
+Route::get('/calc',[calculationController::class,'calc']);
+Route::prefix('calculator')->group(function () {
+    Route::get('/',[calculationController::class,'calculator']);
+    Route::post('/calculate_method',[calculationController::class,'calculate_method']);
+});
+//Route::post('/calculator',[calculationController::class,'calculator']);
+Route::prefix('number')->group(function(){
+    Route::get('/divisible',[DivisibleController::class, 'divisible']);
+    Route::post('/div_method',[DivisibleController::class, 'div_method']);
+});
+Route::prefix('registeration')->group(function(){
+    Route::get('/',[UsersController::class, 'users_forum']);
+    Route::post('/register',[UsersController::class, 'register']);
 });
