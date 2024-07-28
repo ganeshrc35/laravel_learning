@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalcController;
+use App\Http\Controllers\AuthController;
+use Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,21 @@ use App\Http\Controllers\CalcController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',[AuthController::class,'home']);
+Route::prefix('register')->group(function(){
+    Route::get('/',[AuthController::class,'register']);
+    Route::post('/createUser',[AuthController::class,'createUser']);
+    Route::get('/login',[AuthController::class,'login']);
+    Route::post('/login',[AuthController::class,'authenticateUser']);
+
 });
+Route::get('/logout',[AuthController::class,'logout']);
+
+Route::get('/home',function(){
+    dd(Auth::user());
+    echo 'Welcome '.Auth::user()->name;
+});
+
 Route::get('/aa/hello',[CalcController::class,'hello']);
 Route::get('/aa/abc',[CalcController::class,'hello']);
 Route::prefix('calculation')->group(function () {
