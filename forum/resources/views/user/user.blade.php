@@ -39,9 +39,9 @@
 			@csrf
 			<input type="submit" value="Register">
 		</form>
-		<!-- @if(isset($result))
-			{{$result}}
-		@endif -->
+		@if(isset($result))
+			{{json_encode($result)}}
+		@endif
 	</div>
 </body>
 </html>

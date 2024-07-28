@@ -9,6 +9,6 @@ class UsersModel extends Model
 {
     use HasFactory;
     public function register($request){
-        echo "The user registered sucessfully";
+        return $request;
     }
 }
